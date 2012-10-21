@@ -1,3 +1,4 @@
 $('#posts').prepend('<%= escape_javascript(render(@post)) %>');
 $('#posts > li').first().effect('highlight', {color: 'grey', mode: 'fadeIn'}, 2000);
-$('#post_form > form')[0].reset();
+//$('#post_form > form')[0].reset();
+$(":input:not(input[type=submit])").val("");

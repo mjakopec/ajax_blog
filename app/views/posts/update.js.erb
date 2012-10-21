@@ -1,0 +1,15 @@
+<% if @post.errors.any? %>
+  $("#flash_notice").hide(300);
+  $("#post_errors").html("<%= escape_javascript(error_messages_for(@post))%>");
+  $("#post_errors").show(300);
+<% else %>
+  $("#post_errors").hide(300);
+  $("#flash_notice").html("<%= escape_javascript(flash[:notice])%>");
+  $("#flash_notice").show(300);
+  $(":input:not(input[type=submit])").val("");
+  who = "#post_"+ <%= @post.id %>;
+  $('input[name="commit"]').val("Create Post");
+  $('form').attr('action', 'posts');
+  $(who).replaceWith("<%= escape_javascript(render(:partial => "item")) %>");
+  $(who).effect('highlight', {color: 'yellow', mode: 'fadeIn'}, 2000);
+<% end %>

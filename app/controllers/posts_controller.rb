@@ -65,10 +65,14 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
+       #format.html { redirect_to @post, notice: 'Post was successfully updated.' } #changed
+        format.html { redirect_to posts, notice: 'Post was successfully updated.' }
+       # format.json { head :no_content }
+        format.json { render json: @post, status: :updated, location: @post }
+        format.js #added
       else
-        format.html { render action: "edit" }
+       # format.html { render action: "edit" }
+        format.html { render action: "index" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
